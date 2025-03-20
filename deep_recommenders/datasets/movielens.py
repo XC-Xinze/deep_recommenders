@@ -127,7 +127,7 @@ class MovieLens(object):
         ds = tf.data.TFRecordDataset(self._filename)
         ds = ds.repeat(epochs)
         ds = ds.batch(batch_size)
-        ds = ds.map(lambda x: tf.py_function(func=_parse_example, inp=[x], Tout=(tf.string,tf.string)), num_parallel_calls=-1)
+        ds = ds.map(lambda x: tf.py_function(func=_parse_example, inp=[x], Tout=(tf.dtypes.DType,tf.int64)), num_parallel_calls=-1)
         return ds
 
 
