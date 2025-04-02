@@ -252,6 +252,9 @@ class Streaming(TopK):
             dataset = tf.data.Dataset.zip((self._identifiers, self._candidates))
         else:
             dataset = self._candidates.map(enumerate_rows)
+        for x,y in dataset:
+            print("x shape:",x.shape,"| x type:",x.dtype)
+            print("y shape:",y.shape,"| y type:",y.dtype)
 
         with _wrap_batch_too_small_error(k):
             result = (dataset
