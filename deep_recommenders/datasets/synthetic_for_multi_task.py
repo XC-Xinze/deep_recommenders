@@ -61,6 +61,10 @@ class SyntheticForMultiTask(object):
         dataset = tf.data.Dataset.from_tensor_slices(synthetic)
         dataset = dataset.repeat(epochs)
         dataset = dataset.batch(batch_size)
+        for x,(y1,y2) in dataset:
+            print("x shape:",x.shape,"|x type:",x.dtype)
+            print("y1 shape:",y1.shape,"|y1 type:",y1.dtype)
+            print("y2 shape:",y2.shape,"|y2 type:",y2.dtype)
         dataset = dataset.map(_parse_example, num_parallel_calls=-1)
         dataset = dataset.prefetch(buffer_size)
         return dataset
