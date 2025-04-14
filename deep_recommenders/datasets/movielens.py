@@ -169,9 +169,6 @@ class MovielensRanking(MovieLens):
 
     def input_fn(self):
         dataset = self.dataset(self._epochs, self._batch_size)
-        for e in dataset:
-            print("shape:",e.shape)
-            print("type:",e.dtype)
         dataset = dataset.map(lambda x, y: (
             {
                 "user_id": x["UserID"],
